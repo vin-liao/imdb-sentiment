@@ -5,9 +5,8 @@ import zipfile
 
 dim_size = 100
 embedding_path = './data/glove.twitter.27B.zip'
-# url = 'http://nlp.stanford.edu/data/glove.6B.zip'
+url = 'http://nlp.stanford.edu/data/glove.6B.zip'
 txt_path = './data/glove.6B/glove.6B.{}d.txt'.format(dim_size)
-url = 'http://thinknook.com/wp-content/uploads/2012/09/Sentiment-Analysis-Dataset.zip'
 
 def download_embedding(filepath=embedding_path):
 	os.system('wget http://thinknook.com/wp-content/uploads/2012/09/Sentiment-Analysis-Dataset.zip -P {}'.format(filepath))
