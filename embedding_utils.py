@@ -19,7 +19,7 @@ def download_embedding():
 	print('Extracting word embedding, this might take a while...')
 
 def load_embedding():
-	# download_embedding()
+	download_embedding()
 
 	#load embedding, put it into a dictionary
 	embedding_index = dict()
