@@ -4,7 +4,7 @@ from requests import get
 import zipfile
 import data_utils
 
-dim_size = 100
+dim_size = 50
 embedding_path = './data/glove.6B.zip'
 txt_path = './data/glove.6B.{}d.txt'.format(dim_size)
 url = 'http://nlp.stanford.edu/data/glove.6B.zip'

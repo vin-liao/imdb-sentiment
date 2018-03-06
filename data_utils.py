@@ -4,7 +4,7 @@ from sklearn.model_selection import train_test_split
 from keras.preprocessing import sequence
 from sklearn.utils import shuffle
 
-max_len = 1500 #completely arbitrary
+max_len = 750 #completely arbitrary
 #the outlier of the data contains around 2.7k words, I'm not gonna use it.
 
 def load_data(size=0.2):
