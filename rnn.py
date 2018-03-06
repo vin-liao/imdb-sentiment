@@ -14,16 +14,14 @@ max_len = data_utils.get_max_len()
 model = Sequential()
 model.add(Embedding(vocab_size, dim_size, input_length=max_len, weights=[embedding_matrix], trainable=False))
 
-model.add(CuDNNGRU(20, return_sequences=True))
+model.add(CuDNNGRU(128, return_sequences=True))
 model.add(Activation('relu'))
-model.add(BatchNormalization())
 model.add(Dropout(0.5))
-model.add(GlobalMaxPooling1D())
-
 model.add(Dense(1, activation='sigmoid'))
+
 model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
 print(model.summary())
 
-model.fit(x_train, y_train, validation_data=(x_test, y_test), epochs=20, batch_size=32, verbose=2)
+model.fit(x_train, y_train, validation_data=(x_test, y_test), epochs=50, batch_size=32, verbose=2)
 scores = model.evaluate(x_test, y_test, verbose=0)
 print("Accuracy: %.2f%%" % (scores[1]*100))
