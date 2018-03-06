@@ -4,12 +4,13 @@ from requests import get
 import zipfile
 
 dim_size = 100
-embedding_path = './data/glove.twitter.27B.zip'
-url = 'http://nlp.stanford.edu/data/glove.6B.zip'
+embedding_path = './data/glove.6B.zip'
 txt_path = './data/glove.6B/glove.6B.{}d.txt'.format(dim_size)
+# url = 'http://nlp.stanford.edu/data/glove.6B.zip'
+url = 'http://tabilab.cmpe.boun.edu.tr/datasets/sentiment_datasets/sanders-twitter-0.2.zip'
 
 def download_embedding():
-	os.system('wget {} -P {}'.format(url, embedding_path))
+	os.system('wget {} -P {}'.format(url, './data/'))
 
 	zip_ref = zipfile.ZipFile(embedding_path, 'r')
 	zip_ref.extractall('./data/')
