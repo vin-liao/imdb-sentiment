@@ -20,7 +20,7 @@ model.add(BatchNormalization())
 model.add(Dropout(0.5))
 model.add(GlobalMaxPooling1D())
 
-model.add(Dense(32))
+model.add(Dense(10))
 model.add(Activation('relu'))
 model.add(BatchNormalization())
 model.add(Dropout(0.5))
