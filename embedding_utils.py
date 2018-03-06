@@ -5,7 +5,7 @@ import zipfile
 
 dim_size = 100
 embedding_path = './data/glove.6B.zip'
-txt_path = './data/glove.6B/glove.6B.{}d.txt'.format(dim_size)
+txt_path = './data/glove.6B.{}d.txt'.format(dim_size)
 url = 'http://nlp.stanford.edu/data/glove.6B.zip'
 
 def download_embedding():
