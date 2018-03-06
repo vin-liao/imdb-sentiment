@@ -20,11 +20,6 @@ model.add(BatchNormalization())
 model.add(Dropout(0.5))
 model.add(GlobalMaxPooling1D())
 
-model.add(Dense(10))
-model.add(Activation('relu'))
-model.add(BatchNormalization())
-model.add(Dropout(0.5))
-
 model.add(Dense(1, activation='sigmoid'))
 model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
 print(model.summary())
