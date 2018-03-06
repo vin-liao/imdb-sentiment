@@ -8,10 +8,10 @@ embedding_path = './data/glove.twitter.27B.zip'
 url = 'http://nlp.stanford.edu/data/glove.6B.zip'
 txt_path = './data/glove.6B/glove.6B.{}d.txt'.format(dim_size)
 
-def download_embedding(filepath=embedding_path):
-	os.system('wget http://thinknook.com/wp-content/uploads/2012/09/Sentiment-Analysis-Dataset.zip -P {}'.format(filepath))
+def download_embedding():
+	os.system('wget {} -P {}'.format(url, embedding_path))
 
-	zip_ref = zipfile.ZipFile(filepath, 'r')
+	zip_ref = zipfile.ZipFile(embedding_path, 'r')
 	zip_ref.extractall('./data/')
 	print('Extracting word embedding, this might take a while...')
 
