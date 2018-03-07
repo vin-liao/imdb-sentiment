@@ -2,7 +2,7 @@ import numpy as np
 import embedding_utils
 import data_utils
 from keras.models import Sequential
-from keras.layers import Dense, Embedding, GlobalMaxPooling1D, CuDNNGRU, Dropout, BatchNormalization, Activation
+from keras.layers import Dense, Embedding, GlobalMaxPooling1D, Dropout, Activation, Conv1D
 
 x_train, x_test, y_train, y_test = data_utils.load_data()
 word_index = data_utils.get_wi()
@@ -13,16 +13,8 @@ max_len = data_utils.get_max_len()
 
 model = Sequential()
 model.add(Embedding(vocab_size, dim_size, input_length=max_len, weights=[embedding_matrix], trainable=False))
-
-model.add(CuDNNGRU(64))
-model.add(Activation('relu'))
-model.add(BatchNormalization())
-model.add(Dropout(0.8))
-
-model.add(Dense(32))
-model.add(Activation('relu'))
-model.add(BatchNormalization())
-model.add(Dropout(0.8))
+model.add(Conv1D(filters=3, kernel_size=[4, 5], activation='relu'))
+model.add(GlobalMaxPooling1D())
 
 model.add(Dense(1, activation='sigmoid'))
 
