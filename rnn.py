@@ -14,9 +14,16 @@ max_len = data_utils.get_max_len()
 model = Sequential()
 model.add(Embedding(vocab_size, dim_size, input_length=max_len, weights=[embedding_matrix], trainable=False))
 
-model.add(CuDNNGRU(32))
+model.add(CuDNNGRU(64))
 model.add(Activation('relu'))
+model.add(BatchNormalization())
 model.add(Dropout(0.8))
+
+model.add(Dense(32))
+model.add(Activation('relu'))
+model.add(BatchNormalization())
+model.add(Dropout(0.8))
+
 model.add(Dense(1, activation='sigmoid'))
 
 model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
