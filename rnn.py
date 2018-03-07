@@ -16,7 +16,7 @@ model.add(Embedding(vocab_size, dim_size, input_length=max_len, weights=[embeddi
 
 model.add(CuDNNGRU(32))
 model.add(Activation('relu'))
-model.add(Dropout(0.5))
+model.add(Dropout(0.8))
 model.add(Dense(1, activation='sigmoid'))
 
 model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
