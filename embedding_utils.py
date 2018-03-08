@@ -5,20 +5,14 @@ import zipfile
 import data_utils
 
 dim_size = 50
-embedding_path = './data/glove.6B.zip'
+embedding_path = './data/glove.6B.50d.txt.tar.gz'
 txt_path = './data/glove.6B.{}d.txt'.format(dim_size)
-url = 'http://nlp.stanford.edu/data/glove.6B.zip'
 word_index = data_utils.get_wi()
 vocab_size = len(word_index)
 
 def download_embedding():
-	#if it doesn't exist
-	if os.path.isfile(embedding_path) == False:
-		os.system('wget {} -P {}'.format(url, './data/'))
-
-		zip_ref = zipfile.ZipFile(embedding_path, 'r')
-		zip_ref.extractall('./data/')
-		print('Extracting word embedding, this might take a while...')
+	zip_ref = zipfile.ZipFile(embedding_path, 'r')
+	zip_ref.extractall('./data/')
 
 def load_embedding():
 	download_embedding()
