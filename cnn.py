@@ -13,7 +13,7 @@ max_len = data_utils.get_max_len()
 
 model = Sequential()
 model.add(Embedding(vocab_size, dim_size, input_length=max_len, weights=[embedding_matrix], trainable=False))
-model.add(Conv1D(filters=50, kernel_size=7, activation='relu'))
+model.add(Conv1D(filters=20, kernel_size=4, activation='relu'))
 model.add(GlobalMaxPooling1D())
 
 model.add(Dense(1, activation='sigmoid'))
