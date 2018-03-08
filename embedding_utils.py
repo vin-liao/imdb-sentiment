@@ -11,8 +11,10 @@ word_index = data_utils.get_wi()
 vocab_size = len(word_index)
 
 def download_embedding():
-	zip_ref = zipfile.ZipFile(embedding_path, 'r')
-	zip_ref.extractall('./data/')
+	#if txt file exist
+	if os.path.isfile(txt_path) == False:
+		zip_ref = zipfile.ZipFile(embedding_path, 'r')
+		zip_ref.extractall('./data/')
 
 def load_embedding():
 	download_embedding()
