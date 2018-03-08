@@ -1,7 +1,7 @@
 import numpy as np
 import os
 from requests import get
-import zipfile
+import tarfile
 import data_utils
 
 dim_size = 50
@@ -13,8 +13,9 @@ vocab_size = len(word_index)
 def download_embedding():
 	#if txt file exist
 	if os.path.isfile(txt_path) == False:
-		zip_ref = zipfile.ZipFile(embedding_path, 'r')
-		zip_ref.extractall('./data/')
+		tar = tarfile.open(embedding_path, 'r')
+		tar.extractall('./data/')
+		tar.close()
 
 def load_embedding():
 	download_embedding()

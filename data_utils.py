@@ -1,6 +1,6 @@
 import numpy as np
-from keras.datasets import imdb
 from sklearn.model_selection import train_test_split
+from keras.datasets import imdb
 from keras.preprocessing import sequence
 from sklearn.utils import shuffle
 
