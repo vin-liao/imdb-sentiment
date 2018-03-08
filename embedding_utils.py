@@ -12,11 +12,13 @@ word_index = data_utils.get_wi()
 vocab_size = len(word_index)
 
 def download_embedding():
-	os.system('wget {} -P {}'.format(url, './data/'))
+	#if it doesn't exist
+	if os.path.isfile(embedding_path) == False:
+		os.system('wget {} -P {}'.format(url, './data/'))
 
-	zip_ref = zipfile.ZipFile(embedding_path, 'r')
-	zip_ref.extractall('./data/')
-	print('Extracting word embedding, this might take a while...')
+		zip_ref = zipfile.ZipFile(embedding_path, 'r')
+		zip_ref.extractall('./data/')
+		print('Extracting word embedding, this might take a while...')
 
 def load_embedding():
 	download_embedding()
