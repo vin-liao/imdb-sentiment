@@ -16,13 +16,10 @@ max_len = data_utils.get_max_len()
 model = Sequential()
 model.add(Embedding(vocab_size, dim_size, input_length=max_len, weights=[embedding_matrix], trainable=False))
 
-model.add(CuDNNGRU(32))
+model.add(CuDNNGRU(128))
 model.add(Activation('relu'))
 model.add(BatchNormalization())
-model.add(Dropout(0.8))
-
-model.add(Dense(32, kernel_regularizer=regularizers.l2(0.01)))
-model.add(Activation('relu'))
+model.add(Dropout(0.5))
 
 model.add(Dense(1, activation='sigmoid'))
 
