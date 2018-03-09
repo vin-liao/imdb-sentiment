@@ -2,6 +2,7 @@ import numpy as np
 import embedding_utils
 import data_utils
 from keras.models import Sequential
+import keras.optimizers
 from keras import regularizers
 from keras.layers import Dense, Embedding, GlobalMaxPooling1D, CuDNNGRU, Dropout, BatchNormalization, Activation
 
@@ -15,7 +16,7 @@ max_len = data_utils.get_max_len()
 model = Sequential()
 model.add(Embedding(vocab_size, dim_size, input_length=max_len, weights=[embedding_matrix], trainable=False))
 
-model.add(CuDNNGRU(64))
+model.add(CuDNNGRU(32))
 model.add(Activation('relu'))
 model.add(BatchNormalization())
 model.add(Dropout(0.8))
@@ -25,7 +26,8 @@ model.add(Activation('relu'))
 
 model.add(Dense(1, activation='sigmoid'))
 
-model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
+adam = keras.optimizers.Adam(lr=0.001, clipvalue=1000)
+model.compile(loss='binary_crossentropy', optimizer=adam, metrics=['accuracy'])
 print(model.summary())
 
 model.fit(x_train, y_train, validation_data=(x_test, y_test), epochs=200, batch_size=32, verbose=2)
