@@ -2,6 +2,7 @@ import numpy as np
 import embedding_utils
 import data_utils
 from keras.models import Sequential
+from keras import regularizers
 from keras.layers import Dense, Embedding, GlobalMaxPooling1D, CuDNNGRU, Dropout, BatchNormalization, Activation
 
 x_train, x_test, y_train, y_test = data_utils.load_data()
@@ -14,14 +15,13 @@ max_len = data_utils.get_max_len()
 model = Sequential()
 model.add(Embedding(vocab_size, dim_size, input_length=max_len, weights=[embedding_matrix], trainable=False))
 
-model.add(CuDNNGRU(32))
+model.add(CuDNNGRU(64))
 model.add(Activation('relu'))
 model.add(BatchNormalization())
 model.add(Dropout(0.8))
 
-model.add(Dense(16))
+model.add(Dense(32, kernel_regularizer=regularizers.l2(0.01)))
 model.add(Activation('relu'))
-model.add(Dropout(0.8))
 
 model.add(Dense(1, activation='sigmoid'))
 
