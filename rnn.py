@@ -17,9 +17,9 @@ model = Sequential()
 model.add(Embedding(vocab_size, dim_size, input_length=max_len, weights=[embedding_matrix], trainable=False))
 
 model.add(CuDNNGRU(128))
-model.add(Dropout(.5))
-model.add(BatchNormalization())
 model.add(Activation('relu'))
+model.add(BatchNormalization())
+model.add(Dropout(.5))
 
 model.add(Dense(1, activation='sigmoid'))
 
