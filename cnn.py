@@ -23,8 +23,7 @@ for i in nb_kernel:
 	result.append(pool)
 
 conc = Concatenate()(result)
-# print(conc.shape)
-# conc = Flatten()(conc)
+conc = Dropout(0.3)(conc)
 pred = Dense(1, activation='sigmoid')(conc)
 
 model = Model(inputs=input_shape, outputs=pred)
