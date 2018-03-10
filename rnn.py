@@ -4,7 +4,7 @@ import data_utils
 from keras.models import Sequential
 import keras.optimizers
 from keras import regularizers
-from keras.layers import Dense, Embedding, GlobalMaxPooling1D, CuDNNGRU, Dropout, BatchNormalization, Activation
+from keras.layers import Dense, Embedding, GlobalMaxPooling1D, Dropout, BatchNormalization, Activation, GRU
 
 x_train, x_test, y_train, y_test = data_utils.load_data()
 word_index = data_utils.get_wi()
@@ -16,10 +16,8 @@ max_len = data_utils.get_max_len()
 model = Sequential()
 model.add(Embedding(vocab_size, dim_size, input_length=max_len, weights=[embedding_matrix], trainable=False))
 
-model.add(CuDNNGRU(64))
-model.add(Activation('relu'))
+model.add(GRU(128, recurrent_dropout=.5, dropout=.5, activation='relu'))
 model.add(BatchNormalization())
-model.add(Dropout(0.5))
 
 model.add(Dense(1, activation='sigmoid'))
 
