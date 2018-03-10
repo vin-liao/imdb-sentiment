@@ -12,8 +12,8 @@ dim_size = embedding_utils.get_dim()
 max_len = data_utils.get_max_len()
 
 input_shape = Input(shape=(max_len, ), dtype='int32')
-nb_filter = 2
-nb_kernel = [2, 3, 4]
+nb_filter = 5
+nb_kernel = [3, 4, 5]
 result = []
 
 embed = Embedding(vocab_size, dim_size, input_length=max_len, weights=[embedding_matrix], trainable=False)(input_shape)
